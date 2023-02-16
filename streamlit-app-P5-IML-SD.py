@@ -34,8 +34,14 @@ from sklearn.pipeline import Pipeline
 # nltk.download('punkt')
 # nltk.download('wordnet')
 # nltk.download('averaged_perceptron_tagger')
-spacy.load('en_core_web_sm')
+# spacy.load('en_core_web_sm')
 # pip install streamlit
+
+
+# In[2]:
+
+
+
 
 
 # In[ ]:
@@ -43,6 +49,12 @@ spacy.load('en_core_web_sm')
 
 # path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
 path = 'ressources/'
+
+
+# In[ ]:
+
+
+nlp = spacy.load(path + 'en_core_web_sm-2.2.0.tar.gz')
 
 
 # In[ ]:
