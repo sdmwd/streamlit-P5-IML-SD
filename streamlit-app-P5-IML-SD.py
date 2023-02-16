@@ -11,63 +11,42 @@
 
 # **Livrable** : Le code final à déployer présenté dans un répertoire et développé progressivement à l’aide d’un logiciel de gestion de versions.
 
-# In[ ]:
+# In[8]:
 
 
-import os
-import dill
-import streamlit as st
 import re
+import dill
 import spacy
+import pickle
 import joblib
 import html5lib
-from bs4 import BeautifulSoup
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+import streamlit as st
 from nltk import pos_tag
-from nltk.stem import WordNetLemmatizer
-from gensim.parsing.preprocessing import STOPWORDS
-from sklearn.preprocessing import FunctionTransformer
+from bs4 import BeautifulSoup
 from sklearn.pipeline import Pipeline
-# nltk.download('omw-1.4')
-# nltk.download('stopwords')
-# nltk.download('punkt')
-# nltk.download('wordnet')
-# nltk.download('averaged_perceptron_tagger')
-# spacy.load('en_core_web_sm')
-# pip install streamlit
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.preprocessing import FunctionTransformer
 
 
-# In[2]:
+# In[9]:
 
 
+path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
+# path = 'ressources/'
 
 
-
-# In[ ]:
-
-
-# path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
-path = 'ressources/'
-
-
-# In[ ]:
-
-
-nlp = spacy.load(path + 'en_core_web_sm-2.2.0.tar.gz')
-
-
-# In[ ]:
+# In[10]:
 
 
 # load the saved CountVectorizer
 vectorizer_loaded = joblib.load(path + 'countvectorizer.joblib')
 
-# # load the saved classifier
-# clf_loaded = joblib.load('D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/sgdc_classifier.pkl')
-
 # load the saved MultiLabelBinarizer
 mlb_loaded = joblib.load(path + 'multilabelbinarizer.joblib')
+
+with open(path + 'stop_words.pkl', 'rb') as f:
+    stop_words = pickle.load(f)
 
 
 # In[ ]:
@@ -104,6 +83,13 @@ with open(path + 'pipeline_tags.pkl', 'rb') as file:
 
 
 output = pipeline_tags.predict(user_input)
+
+
+# In[ ]:
+
+
+# Display the value
+st.write(output)
 
 
 # In[ ]:
