@@ -38,7 +38,6 @@ from sklearn.preprocessing import FunctionTransformer
 
 
 nltk.download('omw-1.4')
-nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
@@ -74,15 +73,11 @@ st.markdown(
 subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</p>'
 st.markdown(subtitle, unsafe_allow_html=True)
 
-user_input = st.text_area("Collez ici un post de Stack Overflow:", height=150)
+user_input = st.text_area("Collez ici un post de Stack Overflow:", height=225)
 
 output = pipeline_tags.predict(user_input)
 
 tags = mlb_loaded.inverse_transform(output)
 
-st.write('Tags suggérés: ' + ', '.join(tags[0]))
-
-# st.write('Tags suggérés :')
-# for tag in tags[0]:
-#     st.write('- ' + tag)
+st.write('Tags suggérés : ' + ', '.join(tags[0]))
 
