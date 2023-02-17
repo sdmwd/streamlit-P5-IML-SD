@@ -31,12 +31,6 @@ from sklearn.preprocessing import FunctionTransformer
 # In[ ]:
 
 
-get_ipython().system('pip install scikit-learn')
-
-
-# In[ ]:
-
-
 # path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
 path = 'ressources/'
 
