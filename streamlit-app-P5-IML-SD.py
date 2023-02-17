@@ -14,6 +14,7 @@
 # In[4]:
 
 
+import re
 import dill
 import pickle
 import joblib
