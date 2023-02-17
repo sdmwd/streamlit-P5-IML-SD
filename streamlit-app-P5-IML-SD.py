@@ -16,6 +16,7 @@
 
 import re
 import dill
+import nltk
 import pickle
 import joblib
 import sklearn
@@ -27,6 +28,16 @@ from sklearn.pipeline import Pipeline
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.preprocessing import FunctionTransformer
+
+
+# In[ ]:
+
+
+nltk.download('omw-1.4')
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
 
 
 # In[ ]:
