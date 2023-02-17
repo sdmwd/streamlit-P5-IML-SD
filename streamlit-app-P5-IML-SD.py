@@ -11,14 +11,13 @@
 
 # **Livrable** : Le code final à déployer présenté dans un répertoire et développé progressivement à l’aide d’un logiciel de gestion de versions.
 
-# In[8]:
+# In[4]:
 
 
-import re
 import dill
-import spacy
 import pickle
 import joblib
+import sklearn
 import html5lib
 import streamlit as st
 from nltk import pos_tag
@@ -29,14 +28,14 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.preprocessing import FunctionTransformer
 
 
-# In[9]:
+# In[ ]:
 
 
-path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
-# path = 'ressources/'
+# path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
+path = 'ressources/'
 
 
-# In[10]:
+# In[ ]:
 
 
 # load the saved CountVectorizer
@@ -117,4 +116,18 @@ for tag in tags[0]:
 
 
 # streamlit run C:\Users\simon\Downloads\Durand_Simon_3_code_012023.py   
+
+
+# In[ ]:
+
+
+
+# pydantic==1.8.2
+# lxml==4.6.3
+# gensim==4.0.1
+# beautifulsoup4==4.11.1
+# fastapi==0.68.1
+# pandas==1.3.2
+# scikit_learn==0.24.2
+# uvicorn==0.15.0
 
