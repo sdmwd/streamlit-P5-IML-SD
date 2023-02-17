@@ -79,6 +79,7 @@ user_input = st.text_area("Collez ici un post de Stack Overflow:", height=150)
 output = pipeline_tags.predict(user_input)
 
 tags = mlb_loaded.inverse_transform(output)
+st.write('Tags suggérés :', ', '.join(tags[0])
 
 st.write('Tags suggérés :')
 for tag in tags[0]:
