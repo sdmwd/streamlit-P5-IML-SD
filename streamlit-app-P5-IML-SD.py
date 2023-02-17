@@ -11,6 +11,10 @@
 
 # **Livrable** : Le code final à déployer présenté dans un répertoire et développé progressivement à l’aide d’un logiciel de gestion de versions.
 
+# Lien vers le répertoire : https://github.com/sdmwd/streamlit-P5-IML-SD
+
+# ### Code du fichier principal : streamlit-app-P5-IML-SD.py
+
 # In[4]:
 
 
@@ -46,10 +50,6 @@ nltk.download('averaged_perceptron_tagger')
 # path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/'
 path = 'ressources/'
 
-
-# In[ ]:
-
-
 # load the saved CountVectorizer
 vectorizer_loaded = joblib.load(path + 'countvectorizer.joblib')
 
@@ -58,6 +58,9 @@ mlb_loaded = joblib.load(path + 'multilabelbinarizer.joblib')
 
 with open(path + 'stop_words.pkl', 'rb') as f:
     stop_words = pickle.load(f)
+    
+with open(path + 'pipeline_tags.pkl', 'rb') as file:
+    pipeline_tags = dill.load(file)
 
 
 # In[ ]:
@@ -68,78 +71,16 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
-# In[ ]:
-
-
-# st.title("Générateur de tags")
 subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</p>'
 st.markdown(subtitle, unsafe_allow_html=True)
 
-
-# In[ ]:
-
-
 user_input = st.text_area("Collez ici un post de Stack Overflow:", height=150)
-
-
-# In[ ]:
-
-
-with open(path + 'pipeline_tags.pkl', 'rb') as file:
-    pipeline_tags = dill.load(file)
-
-
-# In[ ]:
-
 
 output = pipeline_tags.predict(user_input)
 
-
-# In[ ]:
-
-
-# Display the value
-st.write(output)
-
-
-# In[ ]:
-
-
 tags = mlb_loaded.inverse_transform(output)
 
-
-# In[ ]:
-
-
-# Display the value
 st.write('Tags suggérés :')
 for tag in tags[0]:
     st.write('- ' + tag)
-
-
-# In[ ]:
-
-
-# streamlit run D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/saved_ressources/Durand_Simon_3_code_012023.py
-
-
-# In[ ]:
-
-
-# streamlit run C:\Users\simon\Downloads\Durand_Simon_3_code_012023.py   
-
-
-# In[ ]:
-
-
-
-# pydantic==1.8.2
-# lxml==4.6.3
-# gensim==4.0.1
-# beautifulsoup4==4.11.1
-# fastapi==0.68.1
-# pandas==1.3.2
-# scikit_learn==0.24.2
-# uvicorn==0.15.0
 
