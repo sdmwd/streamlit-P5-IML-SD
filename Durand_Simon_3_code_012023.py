@@ -19,7 +19,7 @@ from nltk.stem import WordNetLemmatizer
 #import nltk
 #import sklearn
 #from sklearn.pipeline import Pipeline
-#from keras.layers import Dense, Dropout, BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization
 #from sklearn.preprocessing import FunctionTransformer
 #nltk.download('omw-1.4')
 #nltk.download('punkt')
