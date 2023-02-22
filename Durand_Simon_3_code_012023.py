@@ -36,8 +36,6 @@ vectorizer_CV = joblib.load(path + 'countvectorizer.joblib')
 vectorizer_TFIDF = joblib.load(path + 'tfidfvectorizer.joblib')
 mlb = joblib.load(path + 'multilabelbinarizer.joblib')
 
-pipelines = joblib.load(path + 'pipelines.joblib')
-
 with open(path + 'stop_words.pkl', 'rb') as f:
     stop_words = pickle.load(f)
 
