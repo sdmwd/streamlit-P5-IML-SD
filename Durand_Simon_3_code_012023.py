@@ -28,7 +28,7 @@ from nltk.stem import WordNetLemmatizer
 
 
 # Définition du chemin d'accès aux ressources
-path = 'D:/Mega/Z_Simon/5 - WORK/1 - Projets/Projet 5/streamlit-app/ressources/'
+path = 'ressources/'
 
 
 # Chargement des fichiers
