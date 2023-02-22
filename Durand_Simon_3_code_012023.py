@@ -51,7 +51,6 @@ model_functions = {
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "num_tags": None},
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "num_tags": 5},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "num_tags": 5},
-    "USE + MLP": {"function": pipelines["USE + MLP"].transform, "num_tags": None},
     "USE + CNN": {"function": pipelines["USE + CNN"].transform, "num_tags": None},
 }
 
