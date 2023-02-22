@@ -44,7 +44,7 @@ with open(path + 'stop_words.pkl', 'rb') as f:
 with open(path + 'top_500_tags.pkl', 'rb') as f:
     top_500_tags = pickle.load(f)
 
-with open(path + 'pipeline.pkl', 'rb') as f:
+with open(path + 'pipelines.pkl', 'rb') as f:
     pipelines = cloudpickle.load(f)
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
