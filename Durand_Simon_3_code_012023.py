@@ -2,12 +2,14 @@
 import re
 import dill
 import torch
+import keras
 import pickle
 import joblib
 import html5lib
 import numpy as np
 import streamlit as st
 import tensorflow as tf
+import tensorflow_hub as hub
 from nltk import pos_tag
 import tensorflow_hub as hub
 from bs4 import BeautifulSoup
@@ -15,12 +17,10 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 #import nltk
-#import keras
 #import sklearn
 #from sklearn.pipeline import Pipeline
 #from keras.layers import Dense, Dropout, BatchNormalization
 #from sklearn.preprocessing import FunctionTransformer
-#from transformers import BertModel, BertTokenizer
 #nltk.download('omw-1.4')
 #nltk.download('punkt')
 #nltk.download('wordnet')
