@@ -25,6 +25,8 @@ from nltk.stem import WordNetLemmatizer
 #nltk.download('punkt')
 #nltk.download('wordnet')
 #nltk.download('averaged_perceptron_tagger')
+import cloudpickle
+
 
 
 # Définition du chemin d'accès aux ressources
@@ -36,14 +38,14 @@ vectorizer_CV = joblib.load(path + 'countvectorizer.joblib')
 vectorizer_TFIDF = joblib.load(path + 'tfidfvectorizer.joblib')
 mlb = joblib.load(path + 'multilabelbinarizer.joblib')
 
-pipelines = joblib.load(path + 'pipelines.joblib')
-
 with open(path + 'stop_words.pkl', 'rb') as f:
     stop_words = pickle.load(f)
 
 with open(path + 'top_500_tags.pkl', 'rb') as f:
     top_500_tags = pickle.load(f)
 
+with open(path + 'pipeline.pkl', 'rb') as f:
+    pipelines = cloudpickle.load(f)
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions = {
