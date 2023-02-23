@@ -1,17 +1,17 @@
 # Importation des bibliothèques nécessaires
 import re
 import dill
-import torch
-import keras
+# import torch
+# import keras
 import pickle
 import joblib
 import html5lib
 import numpy as np
 import streamlit as st
-import tensorflow as tf
-import tensorflow_hub as hub
+# import tensorflow as tf
+# import tensorflow_hub as hub
 from nltk import pos_tag
-import tensorflow_hub as hub
+# import tensorflow_hub as hub
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
@@ -19,7 +19,7 @@ from nltk.stem import WordNetLemmatizer
 #import nltk
 #import sklearn
 #from sklearn.pipeline import Pipeline
-from keras.layers import Dense, Dropout, BatchNormalization
+# from keras.layers import Dense, Dropout, BatchNormalization
 #from sklearn.preprocessing import FunctionTransformer
 #nltk.download('omw-1.4')
 #nltk.download('punkt')
