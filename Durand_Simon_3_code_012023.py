@@ -72,7 +72,7 @@ model_choice = st.sidebar.selectbox(
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
-post = st.text_area("Collez ici votre texte :", height=125)
+post = st.text_area("Collez ici votre texte :", height=250)
 
 # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
 if st.button("Generate Tags") and title and post:
