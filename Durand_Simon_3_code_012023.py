@@ -51,7 +51,7 @@ model_functions = {
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "num_tags": None},
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "num_tags": 5},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "num_tags": 5},
-    "USE + CNN": {"function": pipelines["USE + CNN"].transform, "num_tags": None},
+#    "USE + CNN": {"function": pipelines["USE + CNN"].transform, "num_tags": None},
 }
 
 
@@ -80,7 +80,7 @@ if st.button("Generate Tags") and title and post:
     # Concaténer le titre et le message en une seule chaîne
     user_input = title + " " + post
     button_style = "background-color: black; color: white; border-radius: 5px;"
-    
+
     # Si le modèle choisi est présent dans le dictionnaire de fonctions de modèles
     if model_choice in model_functions:
 
@@ -102,5 +102,5 @@ if st.button("Generate Tags") and title and post:
         # Impression des tags
         buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
         st.markdown(buttons, unsafe_allow_html=True)
-       
+
 # streamlit run C:\Users\simon\Downloads\Durand_Simon_3_code_012023.py
