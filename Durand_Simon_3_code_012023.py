@@ -45,13 +45,13 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 model_functions_supervised = {
     "": {"function": None, "tag_transform": None},
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
-    "SGDClassifier2": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
+    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
+    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])}
 }
 
 model_functions_unsupervised = {
     "": {"function": None, "tag_transform": None},
-    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
-    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])}
+    "RAKE Keywords Extractor": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
 }
 
 # Définition de l'interface utilisateur
@@ -95,9 +95,14 @@ if st.button("Generate Tags") and title and post:
         tag_transform = model_functions_supervised[model_choice]["tag_transform"]
 
     # Récupérer la fonctionpour les modèles non supervisés
-    if model_choice in model_functions_unsupervised:
+    elif model_choice in model_functions_unsupervised:
         model_function = model_functions_unsupervised[model_choice]["function"]
         tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
+
+    # Si aucun modèle n'est sélectionné, afficher un message d'erreur
+    else:
+        st.error("Merci de sélectionner un modèle.")
+        return
 
     # Appliquer le modèle choisi à la chaîne d'entrée
     output = model_function(user_input)
