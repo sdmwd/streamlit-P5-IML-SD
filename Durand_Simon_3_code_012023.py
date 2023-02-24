@@ -45,12 +45,10 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 model_functions_supervised = {
     "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
-
 }
 
 model_functions_unsupervised = {
     "": None,
-
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
 }
@@ -66,11 +64,12 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
-
-# Display sel
+def on_select():
+    with st.sidebar.container():
+        unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys())
 
 with st.sidebar.container():
-    supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys())
+    supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys(), on_change=on_select)
 
 with st.sidebar.container():
     unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys())
