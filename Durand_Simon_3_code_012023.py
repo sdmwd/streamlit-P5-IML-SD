@@ -66,7 +66,6 @@ st.markdown(subtitle, unsafe_allow_html=True)
 st.sidebar.header("Choisir un modèle")
 
 with st.sidebar.container():
-    index = 0 if st.session_state.unsupervised_choice else None
     choice = st.selectbox(" ", [" ", "Approche supervisée", "Approche non supervisée"])
 
     if choice == "Approche supervisée":
