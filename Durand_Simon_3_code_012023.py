@@ -43,7 +43,6 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
-    "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
