@@ -79,24 +79,22 @@ st.sidebar.header("Choisir un modèle")
 model_choice_supervised = ""
 model_choice_unsupervised = ""
 
-def on_select(widget_id, value):
+def on_select(name, value):
     global model_choice_supervised, model_choice_unsupervised
-    if widget_id == "supervised":
+    if name == "Approche supervisée":
         model_choice_supervised = value
         model_choice_unsupervised = ""
-        st.sidebar.selectbox("Approche non supervisée", [""])
-    else:
+    elif name == "Approche non supervisée":
         model_choice_unsupervised = value
         model_choice_supervised = ""
-        st.sidebar.selectbox("Approche supervisée", [""])
 
 with st.sidebar.container():
     supervised_choices = list(model_functions_supervised.keys())
-    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select, args=("supervised",))
+    st.selectbox("Approche supervisée", supervised_choices, on_change=on_select)
 
 with st.sidebar.container():
     unsupervised_choices = list(model_functions_unsupervised.keys())
-    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select, args=("unsupervised",))
+    st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select)
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
