@@ -21,10 +21,10 @@ from nltk.stem import WordNetLemmatizer
 #from sklearn.pipeline import Pipeline
 # from keras.layers import Dense, Dropout, BatchNormalization
 #from sklearn.preprocessing import FunctionTransformer
-#nltk.download('omw-1.4')
-#nltk.download('punkt')
-#nltk.download('wordnet')
-#nltk.download('averaged_perceptron_tagger')
+nltk.download('omw-1.4')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
 
 
 # Définition du chemin d'accès aux ressources
