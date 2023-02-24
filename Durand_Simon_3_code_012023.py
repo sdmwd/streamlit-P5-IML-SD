@@ -43,12 +43,14 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
+    "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
 }
 
 model_functions_unsupervised = {
+    "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
@@ -65,13 +67,23 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
+def on_select_supervised(model_choice_supervised):
+    if model_choice_supervised != "":
+        # Do something when a supervised model is selected
+        pass
+
+def on_select_unsupervised(model_choice_unsupervised):
+    if model_choice_unsupervised != "":
+        # Do something when an unsupervised model is selected
+        pass
+        
 with st.sidebar.container():
-    supervised_choices = [''] + list(model_functions_supervised.keys())
-    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices)
+    supervised_choices = list(model_functions_supervised.keys())
+    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select_supervised)
 
 with st.sidebar.container():
-    unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
-    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
+    unsupervised_choices = list(model_functions_unsupervised.keys())
+    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select_unsupervised)
 
 
 # Saisie du titre et du texte à utiliser
