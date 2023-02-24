@@ -90,7 +90,7 @@ if st.button("Generate Tags") and title and post:
         if model_choice == "SGDClassifier":
             tags = list(mlb.inverse_transform(output)[0])
         else:
-            tags = output[0]
+            tags = output[0][0]
             st.write(tags)
 
         # Impression des tags
