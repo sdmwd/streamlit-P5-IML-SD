@@ -76,6 +76,7 @@ with st.sidebar.container():
         with st.sidebar.container():
             model_choice = st.selectbox(" ", model_functions_unsupervised.keys())
 
+
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
 post = st.text_area("Collez ici votre texte :", height=250)
@@ -88,11 +89,11 @@ if st.button("Generate Tags") and title and post:
     user_input = title + " " + post
     button_style = "background-color: black; color: white; border-radius: 5px;"
 
-    # Récupérer la fonction
+    # Récupérer la fonction pour les modèles supervisés
     if model_choice in model_functions_supervised:
         model_function = model_functions_supervised[model_choice]["function"]
 
-    # Récupérer la fonction
+    # Récupérer la fonctionpour les modèles non supervisés
     if model_choice in model_functions_unsupervised:
         model_function = model_functions_unsupervised[model_choice]["function"]
 
@@ -104,7 +105,7 @@ if st.button("Generate Tags") and title and post:
         tags = list(mlb.inverse_transform(output)[0])
     else:
         # tags = output[0]
-        tags = [t[0] for t in output[0]]
+        tags = list(t[0] for t in output[0]])
 
     # Impression des tags
     buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
