@@ -63,15 +63,14 @@ subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</
 st.markdown(subtitle, unsafe_allow_html=True)
 
 
+from sessionstate import SessionState
+
 # Define the available models for each category
 model_functions_supervised = {"Model 1": None, "Model 2": None, "Model 3": None}
 model_functions_unsupervised = {"Model A": None, "Model B": None, "Model C": None}
 
 # Initialize SessionState
 ss = SessionState.get(select_supervised="", select_unsupervised="")
-
-
-
 
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
