@@ -100,10 +100,6 @@ if st.button("Generate Tags") and title and post:
         model_function = model_functions_unsupervised[model_choice]["function"]
         tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
 
-    # Si aucun modèle n'est sélectionné, afficher un message d'erreur
-    elif model_choice is None:
-        st.error("Merci de sélectionner un modèle.")
-
     # Appliquer le modèle choisi à la chaîne d'entrée
     output = model_function(user_input)
 
@@ -113,3 +109,7 @@ if st.button("Generate Tags") and title and post:
     # Impression des tags
     buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
     st.markdown(buttons, unsafe_allow_html=True)
+
+# Si aucun modèle n'est sélectionné, afficher un message d'erreur
+elif model_choice is None:
+    st.error("Merci de sélectionner un modèle.")
