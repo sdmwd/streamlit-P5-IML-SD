@@ -4,7 +4,6 @@ import dill
 import nltk
 import joblib
 import html5lib
-import SessionState
 import numpy as np
 import streamlit as st
 from nltk import pos_tag
@@ -63,14 +62,9 @@ subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</
 st.markdown(subtitle, unsafe_allow_html=True)
 
 
-from sessionstate import SessionState
-
 # Define the available models for each category
-model_functions_supervised = {"Model 1": None, "Model 2": None, "Model 3": None}
-model_functions_unsupervised = {"Model A": None, "Model B": None, "Model C": None}
-
-# Initialize SessionState
-ss = SessionState.get(select_supervised="", select_unsupervised="")
+model_functions_supervised = {"Model 1": None, "Model 2": "dfsdfsfsd", "Model 3": None}
+model_functions_unsupervised = {"Model A": 'sdfsdfsdfd', "Model B": None, "Model C": "sdfgsdfsdf"}
 
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
@@ -84,16 +78,20 @@ with st.sidebar.container():
     model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
 
 # Define a function to update the second selectbox based on the first one
-def update_selectbox():
-    if ss.select_unsupervised != "":
-        ss.select_supervised = ""
-    else:
-        ss.select_supervised = st.selectbox("Approche supervisée", [""] + list(model_functions_supervised.keys()))
-    ss.select_unsupervised = st.selectbox("Approche non supervisée", [""] + list(model_functions_unsupervised.keys()))
+def update_selectbox_supervised(val):
+    if val != "":
+        select_unsupervised.value = ""
+    select_supervised.options = [""] + list(model_functions_supervised.keys())
+
+def update_selectbox_unsupervised(val):
+    if val != "":
+        select_supervised.value = ""
+    select_unsupervised.options = [""] + list(model_functions_unsupervised.keys())
 
 # Display the selectboxes
 st.sidebar.header("Choisir un modèle")
-update_selectbox()
+select_supervised = st.sidebar.selectbox("Approche supervisée", [""] + list(model_functions_supervised.keys()), on_change=update_selectbox_supervised)
+select_unsupervised = st.sidebar.selectbox("Approche non supervisée", [""] + list(model_functions_supervised.keys()), on_change=update_selectbox_unsupervised)
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
