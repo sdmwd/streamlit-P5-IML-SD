@@ -51,7 +51,7 @@ model_functions_supervised = {
 
 model_functions_unsupervised = {
     "": {"function": None, "tag_transform": None},
-    "RAKE Keywords Extractor": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
+    "RAKE Keywords Extractor": {"function": pipelines["RAKE"].predict, "tag_transform": lambda output: [0])},
 }
 
 # Définition de l'interface utilisateur
@@ -87,7 +87,7 @@ post = st.text_area("Collez ici votre texte :", height=250)
 if model_choice is None:
     st.error("Merci de sélectionner une approche.")
 
-elif model_choice == "":
+elif model_choice == "  ":
     st.error("Merci de sélectionner un modèle.")
 
 else:
