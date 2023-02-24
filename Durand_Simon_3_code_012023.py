@@ -87,13 +87,13 @@ post = st.text_area("Collez ici votre texte :", height=250)
 if model_choice is None:
     st.error("Merci de sélectionner une approche.")
 
-elif model_choice == " ":
+elif model_choice == "":
     st.error("Merci de sélectionner un modèle.")
 
 else:
 
     # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
-    if st.button("Generate Tags") and title and post and (model_choice is not None or " "):
+    if st.button("Generate Tags") and title and post and (model_choice is not None or ""):
 
         # Concaténer le titre et le message en une seule chaîne
         user_input = title + " " + post
