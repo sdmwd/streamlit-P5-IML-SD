@@ -69,13 +69,13 @@ with st.sidebar.container():
     index = 0 if st.session_state.unsupervised_choice else None
     choice = st.selectbox("Approches", ["Approche supervisée", "Approche non supervisée"])
 
-if choice == "Approche supervisée":
-    with st.sidebar.container():
-        supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys())
+    if choice == "Approche supervisée":
+        with st.sidebar.container():
+            supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys())
 
-if choice == "Approche non supervisée":
-    with st.sidebar.container():
-        unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys())
+    if choice == "Approche non supervisée":
+        with st.sidebar.container():
+            unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys())
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
