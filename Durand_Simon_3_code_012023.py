@@ -90,11 +90,8 @@ if st.button("Generate Tags") and title and post:
         if model_choice == "SGDClassifier":
             tags = list(mlb.inverse_transform(output)[0])
         else:
-            st.write(output)
-            tags = output[0]
-            st.write(tags)
-            tago = [t[0] for t in tags]
-            st.write(tago)
+            # tags = output[0]
+            tags = [t[0] for t in output[0]]
 
         # Impression des tags
         buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
