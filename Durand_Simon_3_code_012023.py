@@ -68,7 +68,7 @@ st.sidebar.header("Choisir un modèle")
 with st.sidebar.container():
     choice = st.selectbox(" ", [" ", "Approche supervisée", "Approche non supervisée"])
     model_choice = None
-    
+
     if choice == "Approche supervisée":
         with st.sidebar.container():
             model_choice = st.selectbox(" ", model_functions_supervised.keys())
@@ -101,7 +101,7 @@ if st.button("Generate Tags") and title and post:
         tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
 
     # Si aucun modèle n'est sélectionné, afficher un message d'erreur
-    else:
+elif model_choice is None:
         st.error("Merci de sélectionner un modèle.")
 
     # Appliquer le modèle choisi à la chaîne d'entrée
