@@ -51,7 +51,7 @@ model_functions_supervised = {
 
 model_functions_unsupervised = {
     "": {"function": None, "tag_transform": None},
-    "RAKE Keywords Extractor": {"function": pipelines["RAKE"].predict, "tag_transform": lambda output: [0]},
+    "RAKE Keywords Extractor": {"function": pipelines["RAKE"].transform, "tag_transform": lambda output: [0]},
 }
 
 # Définition de l'interface utilisateur
