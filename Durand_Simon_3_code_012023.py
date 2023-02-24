@@ -90,7 +90,7 @@ if model_choice is None:
 else:
 
     # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
-    if st.button("Generate Tags") and title and post:
+    if st.button("Generate Tags") and title and post and (model_choice is not None):
 
         # Concaténer le titre et le message en une seule chaîne
         user_input = title + " " + post
