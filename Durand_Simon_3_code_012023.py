@@ -73,10 +73,19 @@ with st.sidebar.container():
     unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
     model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
 
-if model_choice_supervised:
-    model_choice_unsupervised = ''
-elif model_choice_unsupervised:
-    model_choice_supervised = ''
+def update_selectbox(selectbox1, selectbox2):
+    if selectbox1 != '':
+        selectbox2.options = ['', selectbox1]
+    else:
+        selectbox2.options = ['', *list(model_functions_unsupervised.keys())]
+
+# Call the callback function with the two selectboxes as arguments
+update_selectbox(model_choice_supervised, model_choice_unsupervised)
+update_selectbox(model_choice_unsupervised, model_choice_supervised)
+
+# Set up the on_change behavior for the selectboxes
+model_choice_supervised = model_choice_supervised.on_change(lambda _: update_selectbox(model_choice_supervised, model_choice_unsupervised))
+model_choice_unsupervised = model_choice_unsupervised.on_change(lambda _: update_selectbox(model_choice_unsupervised, model_choice_supervised))
 
 
 # Saisie du titre et du texte à utiliser
