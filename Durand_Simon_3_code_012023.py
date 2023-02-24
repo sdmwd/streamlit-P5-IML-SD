@@ -67,7 +67,7 @@ st.sidebar.header("Choisir un modèle")
 
 with st.sidebar.container():
     index = 0 if st.session_state.unsupervised_choice else None
-    choice = st.selectbox("Approches", ["Approche supervisée", "Approche non supervisée"])
+    choice = st.selectbox("Approches", ["", "Approche supervisée", "Approche non supervisée"])
 
     if choice == "Approche supervisée":
         with st.sidebar.container():
