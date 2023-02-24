@@ -103,7 +103,7 @@ if st.button("Generate Tags") and title and post:
     output = model_function(user_input)
 
     # Extraire les tags prédits de la sortie
-    tags = tag_transform(output
+    tags = tag_transform(output)
 
     # Impression des tags
     buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
