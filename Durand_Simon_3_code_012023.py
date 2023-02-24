@@ -67,66 +67,45 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
-# def on_select():
-#     if model_choice_supervised != "":
-#         # Set the value of the second selectbox to the first choice (the empty string)
-#         model_choice_unsupervised = unsupervised_choices[0]
-#         st.sidebar.selectbox("Approche non supervisée", unsupervised_choices, index=0)
-#     if model_choice_unsupervised != "":
-#         # Set the value of the first selectbox to the first choice (the empty string)
-#         model_choice_supervised = supervised_choices[0]
-#         st.sidebar.selectbox("Approche supervisée", supervised_choices, index=0)
-model_choice_supervised = ""
-model_choice_unsupervised = ""
+supervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
 
-def on_select(name, value, widget_id):
-    global model_choice_supervised, model_choice_unsupervised
-    if widget_id == "supervised":
-        model_choice_supervised = value
-        model_choice_unsupervised = ""
-        st.sidebar.selectbox("Approche non supervisée", [""])
-    else:
-        model_choice_unsupervised = value
-        model_choice_supervised = ""
-        st.sidebar.selectbox("Approche supervisée", [""])
+def on_select(name, value):
+    if name == "supervised":
+        if value == "Sélectionnez une option":
+            st.warning("Veuillez sélectionner une option")
+        else:
+            st.success("Vous avez sélectionné l'option " + value)
 
-
-with st.sidebar.container():
-    supervised_choices = list(model_functions_supervised.keys())
-    st.selectbox("Approche supervisée", supervised_choices, callback=on_select, kwargs={"widget_id": "supervised"})
-
-with st.sidebar.container():
-    unsupervised_choices = list(model_functions_unsupervised.keys())
-    st.selectbox("Approche non supervisée", unsupervised_choices, callback=on_select, kwargs={"widget_id": "unsupervised"})
+supervised_choice = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select, key="supervised")
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
 post = st.text_area("Collez ici votre texte :", height=250)
 
 
-# Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
-if st.button("Generate Tags") and title and post:
-
-    # Concaténer le titre et le message en une seule chaîne
-    user_input = title + " " + post
-    button_style = "background-color: black; color: white; border-radius: 5px;"
-
-    # Si le modèle choisi est présent dans le dictionnaire de fonctions de modèles
-    if model_choice in model_functions:
-
-        # Récupérer la fonction et le nombre de tags associés au modèle choisi
-        model_function = model_functions[model_choice]["function"]
-
-        # Appliquer le modèle choisi à la chaîne d'entrée
-        output = model_function(user_input)
-
-        # Extraire les tags prédits de la sortie
-        if model_choice == "SGDClassifier":
-            tags = list(mlb.inverse_transform(output)[0])
-        else:
-            # tags = output[0]
-            tags = [t[0] for t in output[0]]
-
-        # Impression des tags
-        buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
-        st.markdown(buttons, unsafe_allow_html=True)
+# # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
+# if st.button("Generate Tags") and title and post:
+#
+#     # Concaténer le titre et le message en une seule chaîne
+#     user_input = title + " " + post
+#     button_style = "background-color: black; color: white; border-radius: 5px;"
+#
+#     # Si le modèle choisi est présent dans le dictionnaire de fonctions de modèles
+#     if model_choice in model_functions:
+#
+#         # Récupérer la fonction et le nombre de tags associés au modèle choisi
+#         model_function = model_functions[model_choice]["function"]
+#
+#         # Appliquer le modèle choisi à la chaîne d'entrée
+#         output = model_function(user_input)
+#
+#         # Extraire les tags prédits de la sortie
+#         if model_choice == "SGDClassifier":
+#             tags = list(mlb.inverse_transform(output)[0])
+#         else:
+#             # tags = output[0]
+#             tags = [t[0] for t in output[0]]
+#
+#         # Impression des tags
+#         buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
+#         st.markdown(buttons, unsafe_allow_html=True)
