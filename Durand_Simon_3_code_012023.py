@@ -2,31 +2,24 @@
 import re
 import dill
 import nltk
-# import torch
-# import keras
-import pickle
 import joblib
 import html5lib
 import numpy as np
 import streamlit as st
-# import tensorflow as tf
-# import tensorflow_hub as hub
-
 from nltk import pos_tag
-# import tensorflow_hub as hub
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-
-#import sklearn
-#from sklearn.pipeline import Pipeline
+nltk.download('omw-1.4')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+# import torch
+# import keras
+# import sklearn
+# import tensorflow as tf
+# import tensorflow_hub as hub
 # from keras.layers import Dense, Dropout, BatchNormalization
-#from sklearn.preprocessing import FunctionTransformer
-# nltk.download('omw-1.4')
-# nltk.download('punkt')
-# nltk.download('wordnet')
-# nltk.download('averaged_perceptron_tagger')
-
 
 
 
@@ -40,10 +33,10 @@ vectorizer_TFIDF = joblib.load(path + 'tfidfvectorizer.joblib')
 mlb = joblib.load(path + 'multilabelbinarizer.joblib')
 
 with open(path + 'stop_words.pkl', 'rb') as f:
-    stop_words = pickle.load(f)
+    stop_words = dill.load(f)
 
 with open(path + 'top_500_tags.pkl', 'rb') as f:
-    top_500_tags = pickle.load(f)
+    top_500_tags = dill.load(f)
 
 with open(path + 'pipelines.pkl', 'rb') as file:
     pipelines = dill.load(file)
