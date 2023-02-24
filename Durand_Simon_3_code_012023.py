@@ -77,7 +77,7 @@ def update_selectbox(selectbox1, selectbox2):
     if selectbox1 != '':
         selectbox2.options = ['', selectbox1]
     else:
-        selectbox2.options = ['', *list(model_functions_unsupervised.keys())]
+        selectbox2.options = [''] if selectbox1.value != '' else list(model_functions_unsupervised.keys())
 
 # Call the callback function with the two selectboxes as arguments
 update_selectbox(model_choice_supervised, model_choice_unsupervised)
