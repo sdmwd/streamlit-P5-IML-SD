@@ -63,18 +63,16 @@ st.markdown(subtitle, unsafe_allow_html=True)
 
 
 # # Sélection du modèle à utiliser
-# st.sidebar.header("Choisir un modèle")
-# model_choice = st.sidebar.selectbox(
-#     "Approche supervisée", list(model_functions.keys())
-# )
-
 st.sidebar.header("Choisir un modèle")
 
 with st.sidebar.container():
-    model_choice_supervised = st.selectbox("Approche supervisée", list(None + model_functions_supervised.keys()))
+    supervised_choices = [''] + list(model_functions_supervised.keys())
+    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices)
 
 with st.sidebar.container():
-    model_choice_unsupervised = st.selectbox("Approche non supervisée", list(None + model_functions_unsupervised.keys()))
+    unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
+    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
+
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
