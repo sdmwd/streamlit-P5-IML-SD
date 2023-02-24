@@ -89,7 +89,7 @@ if st.button("Generate Tags") and title and post:
         # Extraire les tags prédits de la sortie
         if model_choice == "SGDClassifier":
             tags = list(mlb.inverse_transform(output)[0])
-        elif num_tags is None:
+        else:
             tags = output[0]
 
         # Impression des tags
