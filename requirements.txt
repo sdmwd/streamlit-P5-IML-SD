@@ -4,8 +4,5 @@ html5lib==1.1
 nltk==3.7
 beautifulsoup4==4.11.1
 scikit_learn==1.0.2
-keras==2.11.0
-tensorflow-hub==0.12.0
-tensorflow==2.11.0
 pandas==1.4.4
 numpy==1.21.5
