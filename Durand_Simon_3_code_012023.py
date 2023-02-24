@@ -83,12 +83,12 @@ title = st.text_input("Collez ici votre titre :")
 post = st.text_area("Collez ici votre texte :", height=250)
 
 
-# Si aucun modèle n'est sélectionné, afficher un message d'erreur
+# Si aucune approche ni aucun modèle ne sont sélectionnés, afficher un message d'erreur
 if model_choice is None:
     st.error("Merci de sélectionner une approche.")
 
-elif model_choice = " ":
-    st.error("Merci de sélectionner un modèle.")    
+elif model_choice == " ":
+    st.error("Merci de sélectionner un modèle.")
 
 else:
 
