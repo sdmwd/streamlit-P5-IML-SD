@@ -14,12 +14,6 @@ nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
-# import torch
-# import keras
-# import sklearn
-# import tensorflow as tf
-# import tensorflow_hub as hub
-# from keras.layers import Dense, Dropout, BatchNormalization
 
 
 # Définition du chemin d'accès aux ressources
