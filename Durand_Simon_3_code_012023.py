@@ -88,22 +88,24 @@ if st.button("Generate Tags") and title and post:
     user_input = title + " " + post
     button_style = "background-color: black; color: white; border-radius: 5px;"
 
-    # Si le modèle choisi est présent dans les dictionnaires de fonctions de modèles
-    if model_choice in model_functions_supervised or model_choice in model_functions_unsupervised:
+    # Récupérer la fonction
+    if model_choice in model_functions_supervised:
+        model_function = model_functions_supervised[model_choice]["function"]
 
-        # Récupérer la fonction et le nombre de tags associés au modèle choisi
-        model_function = model_functions[model_choice]["function"]
+    # Récupérer la fonction
+    if model_choice in model_functions_unsupervised:
+        model_function = model_functions_unsupervised[model_choice]["function"]
 
-        # Appliquer le modèle choisi à la chaîne d'entrée
-        output = model_function(user_input)
+    # Appliquer le modèle choisi à la chaîne d'entrée
+    output = model_function(user_input)
 
-        # Extraire les tags prédits de la sortie
-        if model_choice == "SGDClassifier":
-            tags = list(mlb.inverse_transform(output)[0])
-        else:
-            # tags = output[0]
-            tags = [t[0] for t in output[0]]
+    # Extraire les tags prédits de la sortie
+    if model_choice == "SGDClassifier":
+        tags = list(mlb.inverse_transform(output)[0])
+    else:
+        # tags = output[0]
+        tags = [t[0] for t in output[0]]
 
-        # Impression des tags
-        buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
-        st.markdown(buttons, unsafe_allow_html=True)
+    # Impression des tags
+    buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
+    st.markdown(buttons, unsafe_allow_html=True)
