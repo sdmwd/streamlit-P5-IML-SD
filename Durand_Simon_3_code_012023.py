@@ -67,24 +67,17 @@ st.sidebar.header("Choisir un modèle")
 
 if 'supervised_choice' not in st.session_state:
     st.session_state.supervised_choice = ""
+    st.session_state.unsupervised_choices = list(model_functions_unsupervised.keys())
 
-# Define a function to update the options of the unsupervised model select box
-def update_unsupervised_choices():
-    model_functions_unsupervised_filtered = {k:v for k, v in model_functions_unsupervised.items() if v != st.session_state.supervised_choice}
-    return model_functions_unsupervised_filtered.keys()
-
-# Define a function to update the supervised_choice value in session state
 def on_supervised_select():
     st.session_state.supervised_choice = st.session_state.supervised_choice_selectbox
-    st.session_state.unsupervised_choice_selectbox = ""
+    st.session_state.unsupervised_choices = [k for k, v in model_functions_unsupervised.items() if v != st.session_state.supervised_choice]
 
 with st.sidebar.container():
-    # Display the supervised model select box
     st.session_state.supervised_choice_selectbox = st.selectbox("Approche supervisée", list(model_functions_supervised.keys()), on_change=on_supervised_select, key=1)
 
 with st.sidebar.container():
-    # Display the unsupervised model select box with updated choices
-    st.session_state.unsupervised_choice_selectbox = st.selectbox("Approche non supervisée", update_unsupervised_choices(), key=2)
+    st.session_state.unsupervised_choice_selectbox = st.selectbox("Approche non supervisée", st.session_state.unsupervised_choices, key=2)
 
 
 
