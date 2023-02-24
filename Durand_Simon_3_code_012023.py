@@ -43,15 +43,15 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
-    "": None,
-    "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
-    "SGDClassifier2": {"function": pipelines["SGDClassifier"].predict},
+    "": {"function": None, "tag_transform": None},
+    "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
+    "SGDClassifier2": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
 }
 
 model_functions_unsupervised = {
-    "": None,
-    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
-    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
+    "": {"function": None, "tag_transform": None},
+    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
+    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])}
 }
 
 # Définition de l'interface utilisateur
@@ -92,20 +92,18 @@ if st.button("Generate Tags") and title and post:
     # Récupérer la fonction pour les modèles supervisés
     if model_choice in model_functions_supervised:
         model_function = model_functions_supervised[model_choice]["function"]
+        tag_transform = model_functions_supervised[model_choice]["tag_transform"]
 
     # Récupérer la fonctionpour les modèles non supervisés
     if model_choice in model_functions_unsupervised:
         model_function = model_functions_unsupervised[model_choice]["function"]
+        tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
 
     # Appliquer le modèle choisi à la chaîne d'entrée
     output = model_function(user_input)
 
     # Extraire les tags prédits de la sortie
-    if model_choice == "SGDClassifier":
-        tags = list(mlb.inverse_transform(output)[0])
-    else:
-        # tags = output[0]
-        tags = list(t[0] for t in output[0])
+    tags = tag_transform(output
 
     # Impression des tags
     buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
