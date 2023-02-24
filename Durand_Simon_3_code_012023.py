@@ -65,8 +65,7 @@ st.markdown(subtitle, unsafe_allow_html=True)
 st.sidebar.header("Choisir un modèle")
 
 def on_select():
-    with st.sidebar.container():
-        unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys(), key=3)
+    unsupervised_choice = ""
 
 with st.sidebar.container():
     supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys(), on_change=on_select, key=1)
