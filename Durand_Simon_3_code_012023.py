@@ -102,7 +102,6 @@ if st.button("Generate Tags") and title and post:
     # Si aucun modèle n'est sélectionné, afficher un message d'erreur
     else:
         st.error("Merci de sélectionner un modèle.")
-        return
 
     # Appliquer le modèle choisi à la chaîne d'entrée
     output = model_function(user_input)
