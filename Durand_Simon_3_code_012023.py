@@ -101,7 +101,7 @@ if st.button("Generate Tags") and title and post:
         tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
 
     # Si aucun modèle n'est sélectionné, afficher un message d'erreur
-elif model_choice is None:
+    elif model_choice is None:
         st.error("Merci de sélectionner un modèle.")
 
     # Appliquer le modèle choisi à la chaîne d'entrée
