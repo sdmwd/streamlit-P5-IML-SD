@@ -105,7 +105,7 @@ if st.button("Generate Tags") and title and post:
         tags = list(mlb.inverse_transform(output)[0])
     else:
         # tags = output[0]
-        tags = list(t[0] for t in output[0]])
+        tags = list(t[0] for t in output[0])
 
     # Impression des tags
     buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
