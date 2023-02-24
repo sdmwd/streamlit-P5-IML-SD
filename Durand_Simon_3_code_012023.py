@@ -70,7 +70,7 @@ st.sidebar.header("Choisir un modèle")
 
 # Initialize session state variables
 if "supervised" not in st.session_state:
-    st.session_state.supervised = None
+    st.session_state.supervised = "None"
 
 # Define the on_select function
 def on_select(value, widget_id):
