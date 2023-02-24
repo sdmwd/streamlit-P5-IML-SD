@@ -84,7 +84,7 @@ post = st.text_area("Collez ici votre texte :", height=250)
 
 
 # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
-if st.button("Generate Tags") and title and post:
+if st.button("Generate Tags", key=1) and title and post:
 
     # Concaténer le titre et le message en une seule chaîne
     user_input = title + " " + post
@@ -111,5 +111,5 @@ if st.button("Generate Tags") and title and post:
     st.markdown(buttons, unsafe_allow_html=True)
 
 # Si aucun modèle n'est sélectionné, afficher un message d'erreur
-elif st.button("Generate Tags") and model_choice is None:
+elif st.button("Generate Tags", key=2) and model_choice is None:
     st.error("Merci de sélectionner un modèle.")
