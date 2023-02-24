@@ -62,7 +62,7 @@ subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</
 st.markdown(subtitle, unsafe_allow_html=True)
 
 
-# # Sélection du modèle à utiliser
+# Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
 with st.sidebar.container():
@@ -72,6 +72,11 @@ with st.sidebar.container():
 with st.sidebar.container():
     unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
     model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
+
+if model_choice_supervised:
+    model_choice_unsupervised = ''
+elif model_choice_unsupervised:
+    model_choice_supervised = ''
 
 
 # Saisie du titre et du texte à utiliser
