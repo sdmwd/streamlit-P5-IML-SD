@@ -41,18 +41,20 @@ with open(path + 'pipelines.pkl', 'rb') as file:
     pipelines = dill.load(file)
 
 
-# # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
-# model_functions_supervised = {
-#     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
-#     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
-#     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
-# }
-#
-# model_functions_unsupervised = {
-#     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
-#     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
-#     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
-# }
+# Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
+model_functions_supervised = {
+    "": None,
+    "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
+    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
+    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
+}
+
+model_functions_unsupervised = {
+    "": None,
+    "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
+    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
+    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
+}
 
 # Définition de l'interface utilisateur
 st.markdown(
@@ -62,36 +64,17 @@ subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</
 st.markdown(subtitle, unsafe_allow_html=True)
 
 
-# Define the available models for each category
-model_functions_supervised = {"Model 1": None, "Model 2": "dfsdfsfsd", "Model 3": None}
-model_functions_unsupervised = {"Model A": 'sdfsdfsdfd', "Model B": None, "Model C": "sdfgsdfsdf"}
-
-# # Sélection du modèle à utiliser
-# st.sidebar.header("Choisir un modèle")
-#
-# with st.sidebar.container():
-#     supervised_choices = [''] + list(model_functions_supervised.keys())
-#     model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices)
-#
-# with st.sidebar.container():
-#     unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
-#     model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
-
-# Define a function to update the second selectbox based on the first one
-def update_selectbox_supervised(val):
-    if val != "":
-        select_unsupervised.value = ""
-    select_supervised.options = [""] + list(model_functions_supervised.keys())
-
-def update_selectbox_unsupervised(val):
-    if val != "":
-        select_supervised.value = ""
-    select_unsupervised.options = [""] + list(model_functions_unsupervised.keys())
-
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
-select_supervised = st.sidebar.selectbox("Approche supervisée", [""] + list(model_functions_supervised.keys()), on_change=update_selectbox_supervised)
-select_unsupervised = st.sidebar.selectbox("Approche non supervisée", [""] + list(model_functions_supervised.keys()), on_change=update_selectbox_unsupervised)
+
+with st.sidebar.container():
+    supervised_choices = [''] + list(model_functions_supervised.keys())
+    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices)
+
+with st.sidebar.container():
+    unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
+    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
+
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
