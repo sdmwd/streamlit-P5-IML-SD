@@ -45,7 +45,7 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 model_functions_supervised = {
     "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
-    "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
+    "SGDClassifier2": {"function": pipelines["SGDClassifier"].predict},
 }
 
 model_functions_unsupervised = {
