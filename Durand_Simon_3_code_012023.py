@@ -10,6 +10,7 @@ import numpy as np
 import streamlit as st
 # import tensorflow as tf
 # import tensorflow_hub as hub
+import nltk
 from nltk import pos_tag
 # import tensorflow_hub as hub
 from bs4 import BeautifulSoup
