@@ -111,5 +111,5 @@ if st.button("Generate Tags") and title and post:
     st.markdown(buttons, unsafe_allow_html=True)
 
 # Si aucun modèle n'est sélectionné, afficher un message d'erreur
-elif model_choice is None:
+elif st.button("Generate Tags") and model_choice is None:
     st.error("Merci de sélectionner un modèle.")
