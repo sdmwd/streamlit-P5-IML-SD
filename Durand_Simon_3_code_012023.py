@@ -71,40 +71,40 @@ with st.sidebar.container():
 
     if choice == "Approche supervisée":
         with st.sidebar.container():
-            supervised_choice = st.selectbox(" ", model_functions_supervised.keys())
+            model_choice = st.selectbox(" ", model_functions_supervised.keys())
 
     if choice == "Approche non supervisée":
         with st.sidebar.container():
-            unsupervised_choice = st.selectbox(" ", model_functions_unsupervised.keys())
+            model_choice = st.selectbox(" ", model_functions_unsupervised.keys())
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
 post = st.text_area("Collez ici votre texte :", height=250)
 
 
-# # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
-# if st.button("Generate Tags") and title and post:
-#
-#     # Concaténer le titre et le message en une seule chaîne
-#     user_input = title + " " + post
-#     button_style = "background-color: black; color: white; border-radius: 5px;"
-#
-#     # Si le modèle choisi est présent dans le dictionnaire de fonctions de modèles
-#     if model_choice in model_functions:
-#
-#         # Récupérer la fonction et le nombre de tags associés au modèle choisi
-#         model_function = model_functions[model_choice]["function"]
-#
-#         # Appliquer le modèle choisi à la chaîne d'entrée
-#         output = model_function(user_input)
-#
-#         # Extraire les tags prédits de la sortie
-#         if model_choice == "SGDClassifier":
-#             tags = list(mlb.inverse_transform(output)[0])
-#         else:
-#             # tags = output[0]
-#             tags = [t[0] for t in output[0]]
-#
-#         # Impression des tags
-#         buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
-#         st.markdown(buttons, unsafe_allow_html=True)
+# Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
+if st.button("Generate Tags") and title and post:
+
+    # Concaténer le titre et le message en une seule chaîne
+    user_input = title + " " + post
+    button_style = "background-color: black; color: white; border-radius: 5px;"
+
+    # Si le modèle choisi est présent dans les dictionnaires de fonctions de modèles
+    if model_choice in model_functions_supervised or model_choice in model_functions_unsupervised:
+
+        # Récupérer la fonction et le nombre de tags associés au modèle choisi
+        model_function = model_functions[model_choice]["function"]
+
+        # Appliquer le modèle choisi à la chaîne d'entrée
+        output = model_function(user_input)
+
+        # Extraire les tags prédits de la sortie
+        if model_choice == "SGDClassifier":
+            tags = list(mlb.inverse_transform(output)[0])
+        else:
+            # tags = output[0]
+            tags = [t[0] for t in output[0]]
+
+        # Impression des tags
+        buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
+        st.markdown(buttons, unsafe_allow_html=True)
