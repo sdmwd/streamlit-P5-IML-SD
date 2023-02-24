@@ -83,34 +83,35 @@ title = st.text_input("Collez ici votre titre :")
 post = st.text_area("Collez ici votre texte :", height=250)
 
 
-# Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
-if st.button("Generate Tags") and title and post:
+# Si aucun modèle n'est sélectionné, afficher un message d'erreur
+if model_choice is None:
+    st.error("Merci de sélectionner un modèle.")
 
-    # Concaténer le titre et le message en une seule chaîne
-    user_input = title + " " + post
-    button_style = "background-color: black; color: white; border-radius: 5px;"
+else:
 
-    # Récupérer la fonction pour les modèles supervisés
-    if model_choice in model_functions_supervised:
-        model_function = model_functions_supervised[model_choice]["function"]
-        tag_transform = model_functions_supervised[model_choice]["tag_transform"]
+    # Génération des tags si l'utilisateur a cliqué sur le bouton et a fourni des données
+    if st.button("Generate Tags") and title and post:
 
-    # Récupérer la fonctionpour les modèles non supervisés
-    elif model_choice in model_functions_unsupervised:
-        model_function = model_functions_unsupervised[model_choice]["function"]
-        tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
+        # Concaténer le titre et le message en une seule chaîne
+        user_input = title + " " + post
+        button_style = "background-color: black; color: white; border-radius: 5px;"
 
-    # Si aucun modèle n'est sélectionné, afficher un message d'erreur
-    elif model_choice is None:
-        st.error("Merci de sélectionner un modèle.")
-        continue
+        # Récupérer la fonction pour les modèles supervisés
+        if model_choice in model_functions_supervised:
+            model_function = model_functions_supervised[model_choice]["function"]
+            tag_transform = model_functions_supervised[model_choice]["tag_transform"]
 
-    # Appliquer le modèle choisi à la chaîne d'entrée
-    output = model_function(user_input)
+        # Récupérer la fonctionpour les modèles non supervisés
+        elif model_choice in model_functions_unsupervised:
+            model_function = model_functions_unsupervised[model_choice]["function"]
+            tag_transform = model_functions_unsupervised[model_choice]["tag_transform"]
 
-    # Extraire les tags prédits de la sortie
-    tags = tag_transform(output)
+        # Appliquer le modèle choisi à la chaîne d'entrée
+        output = model_function(user_input)
 
-    # Impression des tags
-    buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
-    st.markdown(buttons, unsafe_allow_html=True)
+        # Extraire les tags prédits de la sortie
+        tags = tag_transform(output)
+
+        # Impression des tags
+        buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
+        st.markdown(buttons, unsafe_allow_html=True)
