@@ -67,18 +67,18 @@ st.sidebar.header("Choisir un modèle")
 
 if 'supervised_choice' not in st.session_state:
     st.session_state.supervised_choice = ""
-    st.session_state.unsupervised_choices = list(model_functions_unsupervised.keys())
+    st.session_state.unsupervised_choice = ""
 
-def on_supervised_select():
-    st.session_state.supervised_choice = st.session_state.supervised_choice_selectbox
-    st.session_state.unsupervised_choices = [k for k, v in model_functions_unsupervised.items() if v != st.session_state.supervised_choice]
-
-with st.sidebar.container():
-    st.session_state.supervised_choice_selectbox = st.selectbox("Approche supervisée", list(model_functions_supervised.keys()), on_change=on_supervised_select, key=1)
+def on_select():
+    st.session_state.unsupervised_choice = ""
 
 with st.sidebar.container():
-    st.session_state.unsupervised_choice_selectbox = st.selectbox("Approche non supervisée", st.session_state.unsupervised_choices, key=2)
+    supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys(), on_change=on_select, key=1)
 
+with st.sidebar.container():
+    unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys(), key=2, index=0 if st.session_state.supervised_choice else None)
+
+st.session_state.supervised_choice = supervised_choice
 
 
 # Saisie du titre et du texte à utiliser
