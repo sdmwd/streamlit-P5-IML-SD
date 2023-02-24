@@ -50,7 +50,6 @@ model_functions_supervised = {
 }
 
 model_functions_unsupervised = {
-    "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
