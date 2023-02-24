@@ -67,23 +67,24 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
-def on_select_supervised():
+def on_select():
     if model_choice_supervised != "":
-        # Do something when a supervised model is selected
-        pass
-
-def on_select_unsupervised():
+        # Set the value of the second selectbox to the first choice (the empty string)
+        model_choice_unsupervised = unsupervised_choices[0]
+        st.sidebar.selectbox("Approche non supervisée", unsupervised_choices, index=0)
     if model_choice_unsupervised != "":
-        # Do something when an unsupervised model is selected
-        pass
+        # Set the value of the first selectbox to the first choice (the empty string)
+        model_choice_supervised = supervised_choices[0]
+        st.sidebar.selectbox("Approche supervisée", supervised_choices, index=0)
+
 
 with st.sidebar.container():
     supervised_choices = list(model_functions_supervised.keys())
-    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select_supervised)
+    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select)
 
 with st.sidebar.container():
     unsupervised_choices = list(model_functions_unsupervised.keys())
-    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select_unsupervised)
+    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select)
 
 
 # Saisie du titre et du texte à utiliser
