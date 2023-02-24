@@ -61,7 +61,7 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 model_choice = st.sidebar.selectbox(
-    "", list(model_functions.keys())
+    " ", list(model_functions.keys())
 )
 
 
