@@ -66,16 +66,16 @@ st.markdown(subtitle, unsafe_allow_html=True)
 model_functions_supervised = {"Model 1": None, "Model 2": "dfsdfsfsd", "Model 3": None}
 model_functions_unsupervised = {"Model A": 'sdfsdfsdfd', "Model B": None, "Model C": "sdfgsdfsdf"}
 
-# Sélection du modèle à utiliser
-st.sidebar.header("Choisir un modèle")
-
-with st.sidebar.container():
-    supervised_choices = [''] + list(model_functions_supervised.keys())
-    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices)
-
-with st.sidebar.container():
-    unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
-    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
+# # Sélection du modèle à utiliser
+# st.sidebar.header("Choisir un modèle")
+#
+# with st.sidebar.container():
+#     supervised_choices = [''] + list(model_functions_supervised.keys())
+#     model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices)
+#
+# with st.sidebar.container():
+#     unsupervised_choices = [''] + list(model_functions_unsupervised.keys())
+#     model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices)
 
 # Define a function to update the second selectbox based on the first one
 def update_selectbox_supervised(val):
@@ -88,7 +88,7 @@ def update_selectbox_unsupervised(val):
         select_supervised.value = ""
     select_unsupervised.options = [""] + list(model_functions_unsupervised.keys())
 
-# Display the selectboxes
+# Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 select_supervised = st.sidebar.selectbox("Approche supervisée", [""] + list(model_functions_supervised.keys()), on_change=update_selectbox_supervised)
 select_unsupervised = st.sidebar.selectbox("Approche non supervisée", [""] + list(model_functions_supervised.keys()), on_change=update_selectbox_unsupervised)
