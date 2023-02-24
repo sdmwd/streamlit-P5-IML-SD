@@ -45,13 +45,12 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 model_functions_supervised = {
     "": None,
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
-    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
-    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
+
 }
 
 model_functions_unsupervised = {
     "": None,
-    "SGDClassifier": {"function": pipelines["SGDClassifier"].predict},
+
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform}
 }
@@ -67,48 +66,14 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
-# Store the initial values of selectboxes in session state
-if "supervised_choice" not in st.session_state:
-    st.session_state.supervised_choice = "Sélectionnez une option"
-
-if "unsupervised_choice" not in st.session_state:
-    st.session_state.unsupervised_choice = "Sélectionnez une option"
-
-
-# Define callback function for supervised selectbox
-def on_supervised_select(value):
-    st.session_state.supervised_choice = value
-    st.session_state.unsupervised_choice = "Sélectionnez une option"
-
-# Define callback function for unsupervised selectbox
-def on_unsupervised_select(value):
-    st.session_state.unsupervised_choice = value
-    st.session_state.supervised_choice = "Sélectionnez une option"
-
-# Define choices for selectboxes
-supervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
-unsupervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
 
 # Display sel
 
 with st.sidebar.container():
-    supervised_choice = st.selectbox("Approche supervisée", supervised_choices, on_change=on_supervised_select)
+    supervised_choice = st.selectbox("Approche supervisée", model_functions_supervised.keys())
 
 with st.sidebar.container():
-    unsupervised_choice = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_unsupervised_select)
-
-# Update the choices of the other selectbox based on the selected value
-if st.session_state.supervised_choice != "Sélectionnez une option":
-    unsupervised_choices = ["Sélectionnez une option"]
-elif st.session_state.unsupervised_choice != "Sélectionnez une option":
-    supervised_choices = ["Sélectionnez une option"]
-
-# Display the updated selectboxes
-with st.sidebar.container():
-    supervised_choice = st.selectbox("Approche supervisée", supervised_choices, on_change=on_supervised_select, value=st.session_state.supervised_choice)
-
-with st.sidebar.container():
-    unsupervised_choice = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_unsupervised_select, value=st.session_state.unsupervised_choice)
+    unsupervised_choice = st.selectbox("Approche non supervisée", model_functions_unsupervised.keys())
 
 
 
