@@ -67,7 +67,8 @@ st.sidebar.header("Choisir un modèle")
 
 with st.sidebar.container():
     choice = st.selectbox(" ", [" ", "Approche supervisée", "Approche non supervisée"])
-
+    model_choice = None
+    
     if choice == "Approche supervisée":
         with st.sidebar.container():
             model_choice = st.selectbox(" ", model_functions_supervised.keys())
