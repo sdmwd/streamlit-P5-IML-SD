@@ -67,25 +67,24 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
-supervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
-unsupervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
 
 with st.sidebar.container():
-    supervised_choices = list(model_functions_supervised.keys())
-    st.selectbox("Approche supervisée", supervised_choices)
+    # supervised_choices = list(model_functions_supervised.keys())
+    supervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
+    st.selectbox("Approche supervisée", supervised_choices, on_change=on_select)
 
 with st.sidebar.container():
-    unsupervised_choices = list(model_functions_unsupervised.keys())
-    st.selectbox("Approche non supervisée", unsupervised_choices)
+    # unsupervised_choices = list(model_functions_unsupervised.keys())
+    unsupervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
+    st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select)
 
-def on_select(name, value):
+def on_select():
     if name == "supervised":
         if value == "Sélectionnez une option":
             st.warning("Veuillez sélectionner une option")
         else:
             st.success("Vous avez sélectionné l'option " + value)
 
-supervised_choice = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select, key="supervised")
 
 # Saisie du titre et du texte à utiliser
 title = st.text_input("Collez ici votre titre :")
