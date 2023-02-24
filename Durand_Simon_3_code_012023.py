@@ -76,24 +76,27 @@ st.sidebar.header("Choisir un modèle")
 #         # Set the value of the first selectbox to the first choice (the empty string)
 #         model_choice_supervised = supervised_choices[0]
 #         st.sidebar.selectbox("Approche supervisée", supervised_choices, index=0)
+model_choice_supervised = ""
+model_choice_unsupervised = ""
 
 
-def on_select(model_choice_supervised, model_choice_unsupervised):
-    if model_choice_supervised != "":
-        # Do something when a supervised model is selected
+def on_select(widget_id, old_value, new_value):
+    global model_choice_supervised, model_choice_unsupervised
+    if widget_id == "supervised":
+        model_choice_supervised = new_value
         model_choice_unsupervised = ""
-    if model_choice_unsupervised != "":
-        # Do something when an unsupervised model is selected
+    else:
+        model_choice_unsupervised = new_value
         model_choice_supervised = ""
 
 
 with st.sidebar.container():
     supervised_choices = list(model_functions_supervised.keys())
-    model_choice_supervised = st.selectbox("Approche supervisée", supervised_choices, on_change=on_select, args=(model_choice_supervised, model_choice_unsupervised))
+    st.selectbox("Approche supervisée", supervised_choices, on_change=on_select, args=("supervised", model_choice_supervised, model_choice_unsupervised))
 
 with st.sidebar.container():
     unsupervised_choices = list(model_functions_unsupervised.keys())
-    model_choice_unsupervised = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select, args=(model_choice_supervised, model_choice_unsupervised))
+    st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_select, args=("unsupervised", model_choice_supervised, model_choice_unsupervised))
 
 
 # Saisie du titre et du texte à utiliser
