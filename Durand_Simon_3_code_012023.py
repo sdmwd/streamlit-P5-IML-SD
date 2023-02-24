@@ -68,6 +68,15 @@ st.markdown(subtitle, unsafe_allow_html=True)
 st.sidebar.header("Choisir un modèle")
 
 supervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
+unsupervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
+
+with st.sidebar.container():
+    supervised_choices = list(model_functions_supervised.keys())
+    st.selectbox("Approche supervisée", supervised_choices)
+
+with st.sidebar.container():
+    unsupervised_choices = list(model_functions_unsupervised.keys())
+    st.selectbox("Approche non supervisée", unsupervised_choices)
 
 def on_select(name, value):
     if name == "supervised":
