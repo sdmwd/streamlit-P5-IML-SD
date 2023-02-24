@@ -67,25 +67,49 @@ st.markdown(subtitle, unsafe_allow_html=True)
 # Sélection du modèle à utiliser
 st.sidebar.header("Choisir un modèle")
 
+# Store the initial values of selectboxes in session state
+if "supervised_choice" not in st.session_state:
+    st.session_state.supervised_choice = "Sélectionnez une option"
 
-# Initialize session state variables
-if "supervised" not in st.session_state:
-    st.session_state.supervised = "None"
+if "unsupervised_choice" not in st.session_state:
+    st.session_state.unsupervised_choice = "Sélectionnez une option"
 
-# Define the on_select function
-def on_select(value, widget_id):
-    st.session_state[widget_id] = value
 
-# Create the selectbox widget with on_change callback
-supervised_choices = ["Decision Tree", "Random Forest", "Logistic Regression"]
-selected_supervised = st.selectbox("Approche supervisée", supervised_choices, key="supervised", on_change=on_select, args=("supervised",))
+# Define callback function for supervised selectbox
+def on_supervised_select(value):
+    st.session_state.supervised_choice = value
+    st.session_state.unsupervised_choice = "Sélectionnez une option"
 
-# Display the selected value
-st.write("Selected:", selected_supervised)
+# Define callback function for unsupervised selectbox
+def on_unsupervised_select(value):
+    st.session_state.unsupervised_choice = value
+    st.session_state.supervised_choice = "Sélectionnez une option"
 
-# Use the session state value elsewhere in the app
-if st.session_state.supervised:
-    st.write("Session state value:", st.session_state.supervised)
+# Define choices for selectboxes
+supervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
+unsupervised_choices = ["Sélectionnez une option", "Régression linéaire", "Forêt d'arbres de décision", "SVM"]
+
+# Display sel
+
+with st.sidebar.container():
+    supervised_choice = st.selectbox("Approche supervisée", supervised_choices, on_change=on_supervised_select)
+
+with st.sidebar.container():
+    unsupervised_choice = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_unsupervised_select)
+
+# Update the choices of the other selectbox based on the selected value
+if st.session_state.supervised_choice != "Sélectionnez une option":
+    unsupervised_choices = ["Sélectionnez une option"]
+elif st.session_state.unsupervised_choice != "Sélectionnez une option":
+    supervised_choices = ["Sélectionnez une option"]
+
+# Display the updated selectboxes
+with st.sidebar.container():
+    supervised_choice = st.selectbox("Approche supervisée", supervised_choices, on_change=on_supervised_select, value=st.session_state.supervised_choice)
+
+with st.sidebar.container():
+    unsupervised_choice = st.selectbox("Approche non supervisée", unsupervised_choices, on_change=on_unsupervised_select, value=st.session_state.unsupervised_choice)
+
 
 
 # Saisie du titre et du texte à utiliser
