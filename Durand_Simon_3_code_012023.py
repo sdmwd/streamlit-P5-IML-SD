@@ -37,10 +37,11 @@ with open(path + 'pipelines.pkl', 'rb') as file:
 with open(path + 'lda.pkl', 'rb') as file:
     lda = dill.load(file)
 
+
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
-    "LogisticRegression": {"function": pipelines["LogisticRegression"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},    
+    "LogisticRegression": {"function": pipelines["LogisticRegression"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
 }
 
 model_functions_unsupervised = {
@@ -89,7 +90,6 @@ else:
 
         # Concaténer le titre et le message en une seule chaîne
         user_input = title + " " + post
-        button_style = "background-color: black; color: white; border-radius: 5px;"
 
         # Récupérer la fonction pour les modèles supervisés
         if model_choice in model_functions_supervised:
@@ -108,5 +108,6 @@ else:
         tags = tag_transform(output)
 
         # Impression des tags
+        button_style = "background-color: black; color: white; border-radius: 5px;"
         buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
         st.markdown(buttons, unsafe_allow_html=True)
