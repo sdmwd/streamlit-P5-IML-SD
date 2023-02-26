@@ -45,7 +45,7 @@ model_functions_supervised = {
 model_functions_unsupervised = {
     "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
     "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
-    "LDA": {"function": pipelines["LDA"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
+    "LDA + CountVectorizer": {"function": pipelines["LDA"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
 }
 
 # Définition de l'interface utilisateur
@@ -80,9 +80,6 @@ post = st.text_area("Collez ici votre texte :", height=250)
 # Si aucune approche ni aucun modèle ne sont sélectionnés, afficher un message d'erreur
 if model_choice is None:
     st.error("Merci de sélectionner un modèle.")
-# 
-# elif model_choice == "  ":
-#     st.error("Merci de sélectionner un modèle.")
 
 else:
 
