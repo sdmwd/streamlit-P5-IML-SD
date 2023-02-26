@@ -10,6 +10,9 @@ from nltk import pos_tag
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+
+
+# Téléchargement des ressources nécessaires de NLTK
 nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('wordnet')
