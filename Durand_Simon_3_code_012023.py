@@ -56,6 +56,7 @@ st.markdown(
     unsafe_allow_html=True)
 subtitle = '<p style="font-size: 30px;">Projet 5 - OpenClassrooms Parcours IML</p>'
 st.markdown(subtitle, unsafe_allow_html=True)
+button_style = "background-color: black; color: white; border-radius: 5px;"
 
 
 # Sélection du modèle à utiliser
@@ -108,6 +109,5 @@ else:
         tags = tag_transform(output)
 
         # Impression des tags
-        button_style = "background-color: black; color: white; border-radius: 5px;"
         buttons = "  ".join([f'<button style="{button_style}">{text}</button>' for text in tags])
         st.markdown(buttons, unsafe_allow_html=True)
