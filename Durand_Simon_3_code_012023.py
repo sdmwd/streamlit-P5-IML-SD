@@ -34,18 +34,20 @@ with open(path + 'top_500_tags.pkl', 'rb') as f:
 with open(path + 'pipelines.pkl', 'rb') as file:
     pipelines = dill.load(file)
 
+with open(path + 'lda.pkl', 'rb') as file:
+    lda = dill.load(file)
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
     "": {"function": None, "tag_transform": None},
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
-    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
-    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])}
 }
 
 model_functions_unsupervised = {
     "": {"function": None, "tag_transform": None},
-    "RAKE Keywords Extractor": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: [0]},
+    "CountVectorizer": {"function": pipelines["CountVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
+    "TFIDFVectorizer": {"function": pipelines["TFIDFVectorizer"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
+    "LDA": {"function": pipelines["LDA"].transform, "tag_transform": lambda output: list(t[0] for t in output[0])},
 }
 
 # Définition de l'interface utilisateur
