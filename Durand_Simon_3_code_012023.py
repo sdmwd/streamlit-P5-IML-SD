@@ -40,6 +40,7 @@ with open(path + 'lda.pkl', 'rb') as file:
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},
+    "LogisticRegression": {"function": pipelines["LogisticRegression"].predict, "tag_transform": lambda output: list(mlb.inverse_transform(output)[0])},    
 }
 
 model_functions_unsupervised = {
