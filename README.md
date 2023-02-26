@@ -5,8 +5,8 @@ OpenClassrooms - Parcours IML - Projet 5
 Streamlit share version : https://sdmwd-p5-iml-generateur-de-tags.streamlit.app/
 
 Description (FR)
- - Ce dépôt contient une application Streamlit qui permet de trouver des étiquettes pour des posts de Stack Overflow. 
- - Les étiquettes sont des mots clés qui décrivent le contenu des phrases.
+ - Ce dépôt contient une application Streamlit qui permet de trouver des tags pour des posts de Stack Overflow. 
+ - Les tags sont des mots clés qui décrivent le contenu des phrases.
  - Divers modèles sont disponibles : LDA, CV, TFIDF, LR, SGDC.
 
 Utilisation (FR)
