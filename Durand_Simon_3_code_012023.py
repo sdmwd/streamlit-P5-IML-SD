@@ -43,7 +43,7 @@ with open(path + 'lda.pkl', 'rb') as file:
 
 # Définir un dictionnaire de fonctions de modèles et de leurs paramètres associés
 model_functions_supervised = {
-    "LogisticRegression": {"function": pipelines["LogisticRegression"].predict},
+    "LogisticRegression (best model)": {"function": pipelines["LogisticRegression"].predict},
     "SGDClassifier": {"function": pipelines["SGDClassifier"].predict}
 }
 
