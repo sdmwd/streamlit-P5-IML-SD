@@ -73,7 +73,7 @@ with st.sidebar.container():
         with st.sidebar.container():
             model_choice = st.selectbox(" ", model_functions_supervised.keys(),
                                         format_func=lambda x: f'<span style="color:red">{x}</span>' if x == "LogisticRegression" else x,
-                                        unsafe_allow_html=True))
+                                        unsafe_allow_html=True)
 
     if choice == "Approche non supervisée":
         with st.sidebar.container():
